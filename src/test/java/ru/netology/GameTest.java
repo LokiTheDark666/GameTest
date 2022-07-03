@@ -84,5 +84,23 @@ public class GameTest {
         Player expected = null;
         Assertions.assertEquals(expected, actual);
     }
+    @Test
+    public void shouldThrowNotRegisteredPlayer2() {
+        game.add(player1);
+        game.add(player2);
+        game.register(player1);
+        Assertions.assertThrows(NotRegisteredException.class, () -> {
+            game.round("Vasya", "Petya");
+        });
+    }
+    @Test
+    public void shouldThrowNotRegisteredPlayer1() {
+        game.add(player1);
+        game.add(player2);
+        game.register(player2);
+        Assertions.assertThrows(NotRegisteredException.class, () -> {
+            game.round("Vasya", "Petya");
+        });
+    }
 
 }
